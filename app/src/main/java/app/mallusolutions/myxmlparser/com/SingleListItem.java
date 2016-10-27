@@ -15,7 +15,7 @@ public class SingleListItem extends Activity {
         super.onCreate(savedInstanceState);
         this.setContentView(R.layout.single_list_item_view);
 
-        TextView txtProduct = (TextView) findViewById(R.id.product_label);
+        TextView txtProduct = (TextView) findViewById(R.id.title);
 
         Intent i = getIntent();
         // getting attached intent data
