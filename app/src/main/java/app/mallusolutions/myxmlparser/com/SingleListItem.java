@@ -20,7 +20,6 @@ public class SingleListItem extends Activity {
         Intent i = getIntent();
         // getting attached intent data
         String product = i.getStringExtra("product");
-        System.out.println("############:" + product);
         // displaying selected product name
         txtProduct.setText(product);
 
