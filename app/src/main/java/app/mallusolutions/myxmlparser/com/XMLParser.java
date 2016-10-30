@@ -1,6 +1,10 @@
 package app.mallusolutions.myxmlparser.com;
 
+import android.app.Activity;
+import android.content.res.Resources;
+import android.content.res.XmlResourceParser;
 import android.util.Log;
+import android.util.Xml;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -8,6 +12,8 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
+import org.xmlpull.v1.XmlPullParser;
+import org.xmlpull.v1.XmlPullParserException;
 
 import java.io.BufferedInputStream;
 import java.io.ByteArrayOutputStream;
@@ -18,15 +24,20 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.UnknownServiceException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
+import static java.lang.System.in;
+
 /**
  * Created by Phantom on 25-10-2016.
  */
-public class XMLParser{
+public class XMLParser {
+    private static final String ns = null;
 
     public String getXmlFromUrl(String url) {
         String xml = null;
@@ -50,7 +61,7 @@ public class XMLParser{
         try {
             ByteArrayOutputStream bo = new ByteArrayOutputStream();
             int i = is.read();
-            while(i != -1) {
+            while (i != -1) {
                 bo.write(i);
                 i = is.read();
             }
@@ -60,7 +71,7 @@ public class XMLParser{
         }
     }
 
-    public Document getDomElement(String xml){
+    public Document getDomElement(String xml) {
         Document doc = null;
         DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
         try {
@@ -84,22 +95,67 @@ public class XMLParser{
         // return DOM
         return doc;
     }
+
     public String getValue(Element item, String str) {
         NodeList n = item.getElementsByTagName(str);
         return this.getElementValue(n.item(0));
     }
 
-    public final String getElementValue( Node elem ) {
+    public final String getElementValue(Node elem) {
         Node child;
-        if( elem != null){
-            if (elem.hasChildNodes()){
-                for( child = elem.getFirstChild(); child != null; child = child.getNextSibling() ){
-                    if( child.getNodeType() == Node.TEXT_NODE  ){
+        if (elem != null) {
+            if (elem.hasChildNodes()) {
+                for (child = elem.getFirstChild(); child != null; child = child.getNextSibling()) {
+                    if (child.getNodeType() == Node.TEXT_NODE) {
                         return child.getNodeValue();
                     }
                 }
             }
         }
         return "";
+    }
+
+    public List<songs> getEventsFromAnXML(Activity activity)
+            throws XmlPullParserException, IOException {
+        Resources res = activity.getResources();
+        XmlResourceParser xpp = res.getXml(R.xml.list_detaildata);
+        xpp.next();
+
+        return readFeed(xpp);
+    }
+
+    private List<songs> readFeed(XmlResourceParser xpp) throws IOException, XmlPullParserException {
+        List<songs> songsList = new ArrayList<songs>();
+        int eventType = xpp.getEventType();
+        String title = "", artist = "", URL = "";
+        Integer id = 0;
+        while (eventType != XmlPullParser.END_DOCUMENT) {
+             if (eventType == XmlPullParser.START_TAG) {
+                if (xpp.getName().equals("id")) {
+                    id = Integer.parseInt(readText(xpp));
+                }
+                if (xpp.getName().equals("title")) {
+                    title = readText(xpp);
+                }
+                if (xpp.getName().equals("artist")) {
+                    artist = readText(xpp);
+                }
+                if (xpp.getName().equals("URL")) {
+                    URL = readText(xpp);
+                }
+            }
+            songsList.add(new songs(id, title, artist, URL));
+            eventType = xpp.next();
+        }
+        return songsList;
+    }
+
+    private String readText(XmlPullParser parser) throws IOException, XmlPullParserException {
+        String result = "";
+        if (parser.next() == XmlPullParser.TEXT) {
+            result = parser.getText();
+            parser.nextTag();
+        }
+        return result;
     }
 }
