@@ -27,22 +27,33 @@ public class MainActivity extends Activity {
     // All static variables
     static final String URL = "http://api.androidhive.info/pizza/?format=xml";
     // XML node keys
-    static final String KEY_ITEM = "item"; // parent node
+    static final String KEY_SONG = "song"; // parent node
     static final String KEY_ID = "id";
-    static final String KEY_NAME = "name";
-    static final String KEY_COST = "cost";
-    static final String KEY_DESC = "description";
-    static final String KEY_URL = "URL";
+    static final String KEY_TITLE = "title";
+    static final String KEY_ARTIST = "artist";
+    static final String KEY_DURATION = "duration";
+    static final String KEY_THUMB_URL = "thumb_url";
 
+    ListView list ;
+    LazyAdapter adapter;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        List<songs> songs = new ArrayList<>();
+        setContentView(R.layout.activity_main);
 
+        ArrayList<HashMap<String,String>> songs;
         XMLParser parser = new XMLParser();
 
         try {
             songs = parser.getEventsFromAnXML(this);
+
+            list = (ListView)findViewById(R.id.list);
+            System.out.println("##########" + songs);
+
+            adapter = new LazyAdapter(this,songs);
+            System.out.println("########:" + list);
+            list.setAdapter(adapter);
+
 
         } catch (XmlPullParserException e) {
             e.printStackTrace();
