@@ -147,7 +147,7 @@ public class XMLParser {
                         artist = readText(xpp);
                         map.put(MainActivity.KEY_ARTIST,artist);
                     }
-                    if (xpp.getName().equals("URL")) {
+                    if (xpp.getName().equals("thumb_url")) {
                         URL = readText(xpp);
                         map.put(MainActivity.KEY_THUMB_URL,URL);
                     }
