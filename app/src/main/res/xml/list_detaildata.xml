@@ -25,5 +25,101 @@
             <plays>1400</plays>
             <thumb_url>http://sourcefed.com/wp-content/uploads/2012/10/twitter-for-ios-app-thumbnail.jpg</thumb_url>
         </song>
+        <song>
+            <id>4</id>
+            <title>Someone Like You4</title>
+            <artist>Adele</artist>
+            <duration>4:47</duration>
+            <plays>1662</plays>
+            <thumb_url>http://api.androidhive.info/music/images/adele.png</thumb_url>
+        </song>
+        <song>
+            <id>5</id>
+            <title>Space Bound5</title>
+            <artist>Eminem</artist>
+            <duration>4:38</duration>
+            <plays>1900</plays>
+            <thumb_url>http://api.androidhive.info/music/images/eminem.png</thumb_url>
+        </song>
+        <song>
+            <id>6</id>
+            <title>ios6</title>
+            <artist>iosbird</artist>
+            <duration>4:38</duration>
+            <plays>1400</plays>
+            <thumb_url>http://sourcefed.com/wp-content/uploads/2012/10/twitter-for-ios-app-thumbnail.jpg</thumb_url>
+        </song>
+        <song>
+            <id>7</id>
+            <title>Someone Like You7</title>
+            <artist>Adele</artist>
+            <duration>4:47</duration>
+            <plays>1662</plays>
+            <thumb_url>http://api.androidhive.info/music/images/adele.png</thumb_url>
+        </song>
+        <song>
+            <id>8</id>
+            <title>Space Bound8</title>
+            <artist>Eminem</artist>
+            <duration>4:38</duration>
+            <plays>1900</plays>
+            <thumb_url>http://api.androidhive.info/music/images/eminem.png</thumb_url>
+        </song>
+        <song>
+            <id>9</id>
+            <title>ios9</title>
+            <artist>iosbird</artist>
+            <duration>4:38</duration>
+            <plays>1400</plays>
+            <thumb_url>http://sourcefed.com/wp-content/uploads/2012/10/twitter-for-ios-app-thumbnail.jpg</thumb_url>
+        </song>
+        <song>
+            <id>10</id>
+            <title>Someone Like You</title>
+            <artist>Adele</artist>
+            <duration>4:47</duration>
+            <plays>1662</plays>
+            <thumb_url>http://api.androidhive.info/music/images/adele.png</thumb_url>
+        </song>
+        <song>
+            <id>11</id>
+            <title>Space Bound</title>
+            <artist>Eminem</artist>
+            <duration>4:38</duration>
+            <plays>1900</plays>
+            <thumb_url>http://api.androidhive.info/music/images/eminem.png</thumb_url>
+        </song>
+        <song>
+            <id>12</id>
+            <title>ios</title>
+            <artist>iosbird</artist>
+            <duration>4:38</duration>
+            <plays>1400</plays>
+            <thumb_url>http://sourcefed.com/wp-content/uploads/2012/10/twitter-for-ios-app-thumbnail.jpg</thumb_url>
+        </song>
+        <song>
+            <id>13</id>
+            <title>Someone Like You</title>
+            <artist>Adele</artist>
+            <duration>4:47</duration>
+            <plays>1662</plays>
+            <thumb_url>http://api.androidhive.info/music/images/adele.png</thumb_url>
+        </song>
+        <song>
+            <id>14</id>
+            <title>Space Bound</title>
+            <artist>Eminem</artist>
+            <duration>4:38</duration>
+            <plays>1900</plays>
+            <thumb_url>http://api.androidhive.info/music/images/eminem.png</thumb_url>
+        </song>
+        <song>
+            <id>15</id>
+            <title>ios</title>
+            <artist>iosbird</artist>
+            <duration>4:38</duration>
+            <plays>1400</plays>
+            <thumb_url>http://sourcefed.com/wp-content/uploads/2012/10/twitter-for-ios-app-thumbnail.jpg</thumb_url>
+        </song>
     </music>
 </resources>

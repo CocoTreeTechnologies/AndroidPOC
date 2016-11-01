@@ -3,11 +3,13 @@ package app.mallusolutions.myxmlparser.com;
 import android.app.Activity;
 import android.app.ListActivity;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
@@ -48,10 +50,8 @@ public class MainActivity extends Activity {
             songs = parser.getEventsFromAnXML(this);
 
             list = (ListView)findViewById(R.id.list);
-            System.out.println("##########" + songs.toString());
 
             adapter = new LazyAdapter(this,songs);
-            System.out.println("########:" + list);
             list.setAdapter(adapter);
 
             // Click event for single list row
@@ -60,7 +60,21 @@ public class MainActivity extends Activity {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view,
                                         int position, long id) {
+                    TextView title = (TextView) view.findViewById(R.id.title);
+                    TextView artist = (TextView) view.findViewById(R.id.artist);
+                    TextView duration = (TextView) view.findViewById(R.id.duration);
+                    ImageView thumbnail = (ImageView) view.findViewById(R.id.list_image);
+                    Intent i = new Intent(getApplicationContext(),SingleListItem.class);
+                    i.putExtra("title",title.getText());
+                    i.putExtra("artist",artist.getText());
+                    i.putExtra("duration",duration.getText());
 
+                    thumbnail.buildDrawingCache();
+                    Bundle extras = new Bundle();
+                    Bitmap image= thumbnail.getDrawingCache();
+                    extras.putParcelable("imagebitmap", image);
+                    i.putExtras(extras);
+                    startActivity(i);
                 }
             });
 
