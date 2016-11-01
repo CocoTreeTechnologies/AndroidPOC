@@ -48,11 +48,21 @@ public class MainActivity extends Activity {
             songs = parser.getEventsFromAnXML(this);
 
             list = (ListView)findViewById(R.id.list);
-            System.out.println("##########" + songs);
+            System.out.println("##########" + songs.toString());
 
             adapter = new LazyAdapter(this,songs);
             System.out.println("########:" + list);
             list.setAdapter(adapter);
+
+            // Click event for single list row
+            list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view,
+                                        int position, long id) {
+
+                }
+            });
 
 
         } catch (XmlPullParserException e) {
@@ -61,25 +71,7 @@ public class MainActivity extends Activity {
             e.printStackTrace();
         }
 
-        // storing string resources into Array
-//        String[] adobe_products = getResources().getStringArray(R.array.adobe_products);
-//
-//        // Binding resources Array to ListAdapter
-//        this.setListAdapter(new ArrayAdapter<String>(this, R.layout.list_item, R.id.label, adobe_products));
-//
-//        ListView lv = getListView();
-//
-//        lv.setOnItemClickListener(new AdapterView.OnItemClickListener(){
-//            public void onItemClick(AdapterView<?> parent,View view, int position, long id){
-//                String product = ((TextView) view).getText().toString();
-//
-//                Intent i = new Intent(getApplicationContext(),SingleListItem.class);
-//                i.putExtra("product",product);
-//                startActivity(i);
-//            }
 
-
-//        });
 
     }
 }

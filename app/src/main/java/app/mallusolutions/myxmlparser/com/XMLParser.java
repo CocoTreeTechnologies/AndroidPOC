@@ -128,34 +128,35 @@ public class XMLParser {
     private ArrayList<HashMap<String,String>> readFeed(XmlResourceParser xpp) throws IOException, XmlPullParserException {
         //List<songs> songsList = new ArrayList<songs>();
         ArrayList<HashMap<String,String>> songList = new ArrayList<HashMap<String, String>>();
+        HashMap<String,String> map = new HashMap<String,String>();
         int eventType = xpp.getEventType();
         String title = "", artist = "", URL = "", id = "";
         while (eventType != XmlPullParser.END_DOCUMENT) {
 
              if (eventType == XmlPullParser.START_TAG) {
-                HashMap<String,String> map = new HashMap<String,String>();
-                if (xpp.getName().equals("id")) {
-                    id = readText(xpp);
-                    map.put(MainActivity.KEY_ID,id);
-                }
-                if (xpp.getName().equals("title")) {
-                    title = readText(xpp);
-                    map.put(MainActivity.KEY_TITLE,title);
-                }
-                if (xpp.getName().equals("artist")) {
-                    artist = readText(xpp);
-                    map.put(MainActivity.KEY_ARTIST,artist);
-                }
-                if (xpp.getName().equals("URL")) {
-                    URL = readText(xpp);
-                    map.put(MainActivity.KEY_THUMB_URL,URL);
-                }
-                if (!map.isEmpty()){
+
+                    if (xpp.getName().equals("id")) {
+                        id = readText(xpp);
+                        map.put(MainActivity.KEY_ID,id);
+                    }
+                    if (xpp.getName().equals("title")) {
+                        title = readText(xpp);
+                        map.put(MainActivity.KEY_TITLE,title);
+                    }
+                    if (xpp.getName().equals("artist")) {
+                        artist = readText(xpp);
+                        map.put(MainActivity.KEY_ARTIST,artist);
+                    }
+                    if (xpp.getName().equals("URL")) {
+                        URL = readText(xpp);
+                        map.put(MainActivity.KEY_THUMB_URL,URL);
+                    }
+            } else if (eventType == XmlPullParser.END_TAG) {
+                 if (xpp.getName().equals("song")) {
                      songList.add(map);
-                }
-
-            }
-
+                     map = new HashMap<String,String>();
+                 }
+             }
 
             eventType = xpp.next();
         }

@@ -28,7 +28,7 @@ public class LazyAdapter extends BaseAdapter {
         activity = a;
         data = d;
         inflater = (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-       // imageLoader = new ImageLoader(activity.getApplicationContext());
+        imageLoader = new ImageLoader(activity.getApplicationContext());
     }
     @Override
     public int getCount() {
@@ -57,14 +57,14 @@ public class LazyAdapter extends BaseAdapter {
         TextView duration = (TextView) vi.findViewById(R.id.duration);
         ImageView thumbnail = (ImageView) vi.findViewById(R.id.list_image);
 
-        HashMap<String, String> song = new HashMap<String, String>();
+        HashMap<String, String> song ;
         song = data.get(position);
 
         // Setting all values in listview
         title.setText(song.get(MainActivity.KEY_TITLE));
         artist.setText(song.get(MainActivity.KEY_ARTIST));
         duration.setText(song.get(MainActivity.KEY_DURATION));
-        //imageLoader.DisplayImage(song.get(MainActivity.KEY_THUMB_URL), thumb_image);
+        imageLoader.DisplayImage(song.get(MainActivity.KEY_THUMB_URL), thumbnail);
         return vi;
     }
 }
